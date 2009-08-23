@@ -1,6 +1,0 @@
-D:\source\dotnet\CodeKatas\BinaryTree\BinaryTree\bin\Debug\BinaryTree.dll
-D:\source\dotnet\CodeKatas\BinaryTree\BinaryTree\bin\Debug\BinaryTree.pdb
-D:\source\dotnet\CodeKatas\BinaryTree\BinaryTree\bin\Debug\nunit.framework.dll
-D:\source\dotnet\CodeKatas\BinaryTree\BinaryTree\obj\Debug\ResolveAssemblyReference.cache
-D:\source\dotnet\CodeKatas\BinaryTree\BinaryTree\obj\Debug\BinaryTree.dll
-D:\source\dotnet\CodeKatas\BinaryTree\BinaryTree\obj\Debug\BinaryTree.pdb

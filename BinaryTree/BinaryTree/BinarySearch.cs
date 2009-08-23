@@ -11,22 +11,15 @@ namespace BinaryTree
             var index = -1;
             var lhs = 0;
             var rhs = dataToSearch.Length - 1;
-            var completed = false;
             var offset = 0;
 
-            while (!completed)
+            do 
             {
                 var mid = ((rhs - lhs) / 2) + offset;
 
-                if (dataToSearch[mid] == valueToFind)
+                if (dataToSearch[mid] == valueToFind) 
                 {
                     index = mid;
-                    break;
-                }
-
-                if (rhs - lhs == 0 || (lhs > rhs))
-                {
-                    completed = true;
                 }
 
                 if (valueToFind < dataToSearch[mid]) 
@@ -37,11 +30,11 @@ namespace BinaryTree
                 else 
                 {
                     offset = mid + 1;
-                    lhs = mid + 1;
+                    lhs = offset;
                     rhs = dataToSearch.Length - 1;
                 }
 
-            }
+            } while (rhs - lhs >= 0);
 
             return index;
         }

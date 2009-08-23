@@ -1,42 +1,45 @@
 using System;
 
+/* Common Mistakes!!
+ * 
+ * order of operations when calculating the mid!! subtraction should happen before division, moron!
+ * array index offsets (-1). when? where?
+*/
+
 namespace BinaryTree
 {
     public class BinarySearch
     {
         public int Chop(int valueToFind, int[] dataToSearch)
         {
+            var lowerBound = 0;
+            var upperBound = dataToSearch.Length - 1;
+            var valuePosition = -1;
+            var itemOffset = 0;
+
             if (dataToSearch.Length == 0) return -1;
 
-            var index = -1;
-            var lhs = 0;
-            var rhs = dataToSearch.Length - 1;
-            var offset = 0;
-
-            do 
+            do
             {
-                var mid = ((rhs - lhs) / 2) + offset;
+                var mid = ((upperBound - lowerBound) / 2) + itemOffset;
 
-                if (dataToSearch[mid] == valueToFind) 
+                if (valueToFind == dataToSearch[mid]) valuePosition = mid;
+
+                if (valueToFind < dataToSearch[mid])
                 {
-                    index = mid;
+                    lowerBound = itemOffset;
+                    upperBound = mid - 1;
+                }
+                else if (valueToFind > dataToSearch[mid])
+                {
+                    itemOffset = mid + 1;
+                    lowerBound = mid + 1;
+                    upperBound = dataToSearch.Length - 1;
                 }
 
-                if (valueToFind < dataToSearch[mid]) 
-                {
-                    lhs = offset;
-                    rhs = mid - 1;
-                } 
-                else 
-                {
-                    offset = mid + 1;
-                    lhs = offset;
-                    rhs = dataToSearch.Length - 1;
-                }
+            } while (valuePosition == -1 && lowerBound <= upperBound);
 
-            } while (rhs - lhs >= 0);
-
-            return index;
+            return valuePosition;
         }
     }
 }

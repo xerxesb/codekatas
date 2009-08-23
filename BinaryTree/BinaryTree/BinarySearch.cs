@@ -4,66 +4,50 @@ namespace BinaryTree
 {
     public class BinarySearch
     {
-        const int ItemNotFoundIndex = -1;
-
         public int Chop(int valueToFind, int[] dataToSearch)
         {
-            var currentPosition = 1;
+            if (dataToSearch.Length == 0) return -1;
 
-            if (dataToSearch.Length == 0) return ItemNotFoundIndex; // Possibly redundant
+            var index = -1;
+            var lhs = 0;
+            var rhs = dataToSearch.Length - 1;
+            var completed = false;
+            var offset = 0;
 
-            if (dataToSearch.Length == 1)
+            while (!completed)
             {
-                return dataToSearch[0] != valueToFind ? ItemNotFoundIndex : 0;
-            }
+                var mid = ((rhs - lhs) / 2) + offset;
 
-            if (dataToSearch.Length % 2 == 0) // even number of elements
-            {
-                var lhs = new int[dataToSearch.Length/2];
-                Array.Copy(dataToSearch, 0, lhs, 0, dataToSearch.Length/2);
-
-                var rhs = new int[dataToSearch.Length/2];
-                Array.Copy(dataToSearch, dataToSearch.Length/2, rhs, 0, dataToSearch.Length/2);
-
-                if (lhs[lhs.Length - 1] == valueToFind)
+                if (dataToSearch[mid] == valueToFind)
                 {
-                    currentPosition += lhs[lhs.Length - 1];
+                    index = mid;
+                    break;
                 }
-                else if (lhs[lhs.Length - 1] < valueToFind) // value we want is in LHS 
-                {
-                    var pos = Chop(valueToFind, lhs);
-                    if (pos != ItemNotFoundIndex) currentPosition += pos;
-                }
-                else
-                {
-                    var pos = Chop(valueToFind, rhs);
-                    if (pos != ItemNotFoundIndex) currentPosition -= pos;
-                }
-            }
-            else // odd number of elements
-            {
-                var lhs = new int[dataToSearch.Length/2 + 1];
-                Array.Copy(dataToSearch, 0, lhs, 0, dataToSearch.Length/2 + 1);
 
-                var rhs = new int[dataToSearch.Length/2];
-                Array.Copy(dataToSearch, dataToSearch.Length/2, rhs, 0, dataToSearch.Length/2);
+                if (rhs - lhs == 0 || (lhs > rhs))
+                {
+                    completed = true;
+                }
 
-                if (lhs[lhs.Length - 1] == valueToFind) {
-                    currentPosition += lhs[lhs.Length - 1];
+                if (valueToFind < dataToSearch[mid]) 
+                {
+                    lhs = offset;
+                    rhs = mid - 1;
                 } 
-                else if (lhs[lhs.Length - 1] < valueToFind) // value we want is in LHS 
+                else 
                 {
-                    var pos = Chop(valueToFind, rhs);
-                    if (pos != ItemNotFoundIndex) currentPosition += pos;
+                    offset = mid + 1;
+                    lhs = mid + 1;
+                    rhs = dataToSearch.Length - 1;
                 }
-                else
-                {
-                    var pos = Chop(valueToFind, lhs);
-                    if (pos != ItemNotFoundIndex) currentPosition += pos;
-                }
+
             }
 
-            return currentPosition;
+            return index;
         }
     }
 }
+
+
+
+

@@ -8,6 +8,9 @@ using System;
  * Dont need to set the upper/lower bound for each criteria - 
  *      only update the upper bound when number in lower segment
  *      only update the lower bound (and offset) when number in upper segment
+ *      
+ * When the number is in the lower segment, we want to update the upperbound to the mid - 1
+ * WHen the number is in the upper segment, we want to update the lowerbound to the mid + 1
 */
 
 namespace BinaryTree
@@ -23,11 +26,11 @@ namespace BinaryTree
             var upperBound = dataToSearch.Length - 1;
             var offset = 0;
 
-            while (positionInArray == -1 && lowerBound <= upperBound)
+            while (lowerBound <= upperBound && positionInArray == ItemNotFound)
             {
                 var mid = ((upperBound - lowerBound) / 2) + offset;
 
-                if (valueToFind == dataToSearch[mid]) positionInArray = mid;
+                if (dataToSearch[mid] == valueToFind) { positionInArray = mid; }
 
                 if (valueToFind < dataToSearch[mid])
                 {
@@ -35,7 +38,7 @@ namespace BinaryTree
                 }
                 else if (valueToFind > dataToSearch[mid])
                 {
-                    offset = lowerBound = mid + 1;
+                    lowerBound = offset = mid + 1;
                 }
             }
 

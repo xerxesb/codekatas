@@ -5,9 +5,8 @@ using NUnit.Framework;
 
 namespace BinaryTree 
 {
-    public class ShiftedBoundariesBinarySearchTest : Tester<ShiftedBoundariesBinarySearch>
-    {
-    }
+    public class ShiftedBoundariesBinarySearchTest : Tester<ShiftedBoundariesBinarySearch> { }
+    public class RecursiveBinarySearchTest : Tester<RecursiveBinarySearch> { }
 
     [TestFixture]
     public class Tester<T> where T: IBinarySearch, new() {

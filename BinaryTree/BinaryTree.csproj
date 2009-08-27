@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IBinarySearch.cs" />
+    <Compile Include="RecursiveBinarySearch.cs" />
     <Compile Include="ShiftedBoundariesBinarySearch.cs" />
     <Compile Include="BinaryTreeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

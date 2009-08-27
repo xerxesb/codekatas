@@ -21,16 +21,14 @@ namespace BinaryTree
 
         public int Chop(int valueToFind, int[] dataToSearch)
         {
-            var positionInArray = ItemNotFound;
             var lowerBound = 0;
             var upperBound = dataToSearch.Length - 1;
+            var positionInArray = ItemNotFound;
             var offset = 0;
 
-            while (lowerBound <= upperBound && positionInArray == ItemNotFound)
+            while (upperBound >= lowerBound && positionInArray == ItemNotFound)
             {
                 var mid = ((upperBound - lowerBound) / 2) + offset;
-
-                if (dataToSearch[mid] == valueToFind) { positionInArray = mid; }
 
                 if (valueToFind < dataToSearch[mid])
                 {
@@ -39,6 +37,10 @@ namespace BinaryTree
                 else if (valueToFind > dataToSearch[mid])
                 {
                     lowerBound = offset = mid + 1;
+                }
+                else
+                {
+                    positionInArray = mid;
                 }
             }
 

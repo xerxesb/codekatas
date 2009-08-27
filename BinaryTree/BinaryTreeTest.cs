@@ -5,8 +5,12 @@ using NUnit.Framework;
 
 namespace BinaryTree 
 {
+    public class ShiftedBoundariesBinarySearchTest : Tester<ShiftedBoundariesBinarySearch>
+    {
+    }
+
     [TestFixture]
-    public class Tester {
+    public class Tester<T> where T: IBinarySearch, new() {
         [Test]
         public void Test0() {
             assert_equal(-1, chop(3, new int[0]));
@@ -138,12 +142,12 @@ namespace BinaryTree
             assert_equal(-1, chop(14, new[] { 1, 3, 5, 7, 9, 11, 13, 15 }));
         }
 
-        private BinarySearch _searchEngine;
+        private T _searchEngine;
 
         [SetUp]
         public void SetUp()
         {
-            _searchEngine = new BinarySearch();
+            _searchEngine = new T();
         }
 
         private int chop(int find, int[] array) {

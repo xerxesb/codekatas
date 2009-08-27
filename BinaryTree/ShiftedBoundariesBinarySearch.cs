@@ -15,7 +15,7 @@ using System;
 
 namespace BinaryTree
 {
-    public class BinarySearch
+    public class ShiftedBoundariesBinarySearch : IBinarySearch
     {
         private const int ItemNotFound = -1;
 

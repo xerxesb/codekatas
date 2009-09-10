@@ -59,6 +59,7 @@
     </Compile>
     <Compile Include="Extensions.cs" />
     <Compile Include="Particle.cs" />
+    <Compile Include="ParticleSpawningCoordinator.xaml.cs" />
     <Compile Include="ParticleSystem.cs" />
     <Compile Include="ParticleSystemManager.cs" />
     <Compile Include="Window1.xaml.cs">

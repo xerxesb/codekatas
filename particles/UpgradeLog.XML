@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="particles">
+</Property><Property Name="Solution File" Value="D:\source\windowsclient\particles\csharp\particles.sln">
+</Property><Property Name="Date" Value="Tuesday, 18 August 2009">
+</Property><Property Name="Time" Value="16:05:48 PM">
+</Property></Properties><Event ErrorLevel="0" Project="particles" Source="particles.csproj" Description="Project file successfully backed up as D:\source\windowsclient\particles\csharp\Backup\particles.csproj">
+</Event><Event ErrorLevel="0" Project="particles" Source="app.xaml.cs" Description="File successfully backed up as D:\source\windowsclient\particles\csharp\Backup\app.xaml.cs">
+</Event><Event ErrorLevel="0" Project="particles" Source="Window1.xaml.cs" Description="File successfully backed up as D:\source\windowsclient\particles\csharp\Backup\Window1.xaml.cs">
+</Event><Event ErrorLevel="0" Project="particles" Source="app.xaml" Description="File successfully backed up as D:\source\windowsclient\particles\csharp\Backup\app.xaml">
+</Event><Event ErrorLevel="0" Project="particles" Source="Window1.xaml" Description="File successfully backed up as D:\source\windowsclient\particles\csharp\Backup\Window1.xaml">
+</Event><Event ErrorLevel="0" Project="particles" Source="particles.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="particles" Source="particles.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="particles" Source="particles.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

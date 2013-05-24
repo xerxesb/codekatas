@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using NUnit.Framework;
 using Shouldly;
 using System.Linq;
@@ -26,22 +27,19 @@ namespace GenerateCsv
     {
         public string SurveyToCsv(IEnumerable<SurveyResponse> responses)
         {
-            var languages = Enum.GetValues(typeof(ProgrammingLanguage)).Cast<int>().OrderBy(x => x).Select(x => (ProgrammingLanguage)x);
+            var languages = Enum.GetValues(typeof(ProgrammingLanguage)).Cast<int>().OrderBy(x => x).Select(x => (ProgrammingLanguage)x).ToArray();
 
-            var result = "site," + String.Join(",", languages.Select(x => x.ToString().ToLowerInvariant())) + "\r\n";
+            var text = responses.Select(response =>
+                                        response.Site
+                                        + ","
+                                        + String.Join(",", languages.Select(l => response.Results.ContainsKey(l) ? response.Results[l] : 0)) + "\r\n")
+                                .Aggregate("", (s, s1) => s + s1)
+                                .Trim();
 
-            foreach (var surveyResponse in responses)
-            {
-                var line = surveyResponse.Site + ",";
-                var values = new List<int>();
-
-                foreach (var programmingLanguage in languages)
-                {
-                    values.Add(surveyResponse.Results.ContainsKey(programmingLanguage) ? surveyResponse.Results[programmingLanguage] : 0);
-                }
-                line += String.Join(",", values) + "\r\n";
-                result += line;
-            }
+            var result = "site," 
+                         + String.Join(",", languages.Select(x => x.ToString().ToLowerInvariant())) 
+                         + "\r\n"
+                         + text;
 
             return result.Trim();
         }

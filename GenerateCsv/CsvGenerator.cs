@@ -29,16 +29,15 @@ namespace GenerateCsv
         {
             var languages = Enum.GetValues(typeof(ProgrammingLanguage)).Cast<int>().OrderBy(x => x).Select(x => (ProgrammingLanguage)x).ToArray();
 
-            Func<ProgrammingLanguage, Dictionary<ProgrammingLanguage, int>, int> val = (lang, r) => r.ContainsKey(lang) ? r[lang] : 0; 
+            Func<ProgrammingLanguage, Dictionary<ProgrammingLanguage, int>, int> val = (lang, r) => r.ContainsKey(lang) ? r[lang] : 0;
+            Func<string, IEnumerable<int>, string> line = (title, items) => String.Format("{0},{1}\r\n", title, String.Join(",", items));
 
-            var text = responses.Select(response => response.Site + "," + String.Join(",", languages.Select(lang => val(lang, response.Results))) + "\r\n")
-                                .Aggregate("", (s, s1) => s + s1)
-                                .Trim();
-
-            return "site,"
-                   + String.Join(",", languages.Select(x => x.ToString().ToLowerInvariant()))
-                   + "\r\n"
-                   + text;
+            return "site," + 
+                   String.Join(",", languages.Select(x => x.ToString().ToLowerInvariant())) + 
+                   "\r\n" + 
+                   responses.Select(response => new { response.Site, Langs = languages.Select(lang => val(lang, response.Results))})
+                            .Aggregate("", (content, response) => content + line(response.Site, response.Langs))
+                            .Trim();
         }
     }
 
